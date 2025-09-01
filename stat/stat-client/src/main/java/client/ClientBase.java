@@ -7,7 +7,6 @@ import stat.dto.ViewStatsDto;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@SuppressWarnings("unused")
 public interface ClientBase {
 
     ResponseEntity<EndpointHitDto> postHit(EndpointHitDto endpointHitDto);
