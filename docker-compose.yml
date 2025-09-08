@@ -1,18 +1,18 @@
 services:
-  stat-server:
-    build: stat/stat-server
-    image: stat-server
-    container_name: stat-server
+  stats-server:
+    build: stat/stats-server
+    image: stats-server
+    container_name: stats-server
     ports:
       - "9090:9090"
     depends_on:
-      - stat-db
+      - stats-db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://stat-db:5432/stat
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/stat
       - SPRING_DATASOURCE_USERNAME=stat
       - SPRING_DATASOURCE_PASSWORD=stat
 
-  stat-db:
+  stats-db:
     image: postgres:16.1
     container_name: stat-postgres
     ports:
@@ -22,7 +22,7 @@ services:
       - POSTGRES_USER=stat
       - POSTGRES_DB=stat
     volumes:
-      - C:/Users/Vladislav/IdeaProjects/java-explore-with-me/stat/stat-server/src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - C:/Users/Vladislav/IdeaProjects/java-explore-with-me/stat/stats-server/src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     healthcheck:
       test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
       timeout: 5s
