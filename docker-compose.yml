@@ -21,6 +21,8 @@ services:
       - POSTGRES_PASSWORD=stat
       - POSTGRES_USER=stat
       - POSTGRES_DB=stat
+    volumes:
+      - C:/Users/Vladislav/IdeaProjects/java-explore-with-me/stat/stat-server/src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     healthcheck:
       test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
       timeout: 5s
@@ -49,6 +51,8 @@ services:
       - POSTGRES_PASSWORD=main
       - POSTGRES_USER=main
       - POSTGRES_DB=main
+    volumes:
+      - C:/Users/Vladislav/IdeaProjects/java-explore-with-me/main-server/src/main/resources/Schema.sql:/docker-entrypoint-initdb.d/schema.sql
     healthcheck:
       test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
       timeout: 5s
