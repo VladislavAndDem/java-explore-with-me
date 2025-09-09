@@ -27,7 +27,11 @@ import org.springframework.transaction.annotation.Transactional;
 import stat.dto.ViewStatsDto;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,7 +49,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Transactional(readOnly = true)
     public List<EventFullDto> getEventsWithAdminFilters(List<Long> users, List<String> states, List<Long> categories,
-                                                        LocalDateTime rangeStart, LocalDateTime rangeEnd, Integer from, Integer size) {
+        LocalDateTime rangeStart, LocalDateTime rangeEnd, Integer from, Integer size) {
 
         log.debug("Получен запрос на получения админ события по фильтрам");
         if ((rangeStart != null) && (rangeEnd != null) && (rangeStart.isAfter(rangeEnd)))
@@ -193,4 +197,4 @@ public class AdminServiceImpl implements AdminService {
         }
         return viewsMap;
     }
-}
+ }

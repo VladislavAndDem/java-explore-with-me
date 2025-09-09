@@ -33,7 +33,11 @@ import org.springframework.transaction.annotation.Transactional;
 import stat.dto.ViewStatsDto;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -114,7 +118,7 @@ public class PrivateServiceImpl implements PrivateService {
         userExistence(userId);
         EventModel event = eventRepository.findByIdAndInitiatorId(eventId, userId)
                 .orElseThrow(() -> new NotFoundException(String.format("Событие с id= %d " +
-                        "у пользователя с id= %d не найдено", eventId, userId)));
+                                       "у пользователя с id= %d не найдено", eventId, userId)));
 
         log.debug("Сборка события для ответа");
         EventFullDto result = eventMapper.toFullDto(event);

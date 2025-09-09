@@ -10,4 +10,3 @@ public interface LocationMapper {
     @Mapping(target = "id", ignore = true)
     Location toEntity(LocationDto locationDto);
 }
-
