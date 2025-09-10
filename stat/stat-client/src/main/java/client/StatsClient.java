@@ -25,7 +25,7 @@ public class StatsClient {
 
     public StatsClient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.baseUrl = "http://stat-server:9090";
+        this.baseUrl = "http://stats-server:9090";
     }
 
     public ResponseEntity<EndpointHitDto> postHit(EndpointHitDto endpointHitDto) {
