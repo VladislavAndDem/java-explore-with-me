@@ -21,11 +21,7 @@ services:
       - POSTGRES_PASSWORD=stat
       - POSTGRES_USER=stat
       - POSTGRES_DB=stat
-    healthcheck:
-      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
-      timeout: 5s
-      interval: 5s
-      retries: 10
+
 
   ewm-service:
     build: main-server
@@ -51,8 +47,3 @@ services:
       - POSTGRES_PASSWORD=main
       - POSTGRES_USER=main
       - POSTGRES_DB=main
-    healthcheck:
-      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
-      timeout: 5s
-      interval: 5s
-      retries: 10
