@@ -75,11 +75,11 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleException(Exception e) {
         log.error("Произошла ошибка при получении статистики: ", e);
         return ApiError.builder()
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .status(HttpStatus.BAD_REQUEST)
                 .reason("Ошибка при получении статистики")
                 .message(e.getMessage())
                 .timestamp(LocalDateTime.now())
