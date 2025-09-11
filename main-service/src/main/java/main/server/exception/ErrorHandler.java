@@ -73,4 +73,29 @@ public class ErrorHandler {
                 .timestamp(LocalDateTime.now())
                 .build();
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ApiError handleException(Exception e) {
+        log.error("Произошла ошибка при получении статистики: ", e);
+        return ApiError.builder()
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .reason("Ошибка при получении статистики")
+                .message(e.getMessage())
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
+    @ExceptionHandler(Throwable.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ApiError handleThrowable(Throwable e) {
+        log.error("Произошла ошибка: ", e);
+        return ApiError.builder()
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .reason("Внутренняя ошибка сервера")
+                .message(e.getMessage())
+                .timestamp(LocalDateTime.now())
+                .build();
+    }
+
 }

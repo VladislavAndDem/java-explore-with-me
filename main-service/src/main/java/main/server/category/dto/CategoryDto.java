@@ -11,7 +11,6 @@ import lombok.experimental.FieldDefaults;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
 public class CategoryDto {
 

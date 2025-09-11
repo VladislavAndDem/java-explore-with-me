@@ -177,24 +177,21 @@ public class AdminServiceImpl implements AdminService {
         LocalDateTime endTime = LocalDateTime.now().plusMinutes(5);
 
         Map<Long, Long> viewsMap = new HashMap<>();
-        try {
-            log.debug("Получение статистики по времени для URI: {} с {} по {}", uris, startTime, endTime);
-            List<ViewStatsDto> stats = statsClient.getStatistics(
-                    startTime,
-                    endTime,
-                    uris,
-                    true
-            );
-            log.debug("Получение статистики");
-            if (stats != null && !stats.isEmpty()) {
-                for (ViewStatsDto stat : stats) {
-                    Long eventId = Long.parseLong(stat.getUri().substring("/events/".length()));
-                    viewsMap.put(eventId, stat.getHits());
-                }
+        log.debug("Получение статистики по времени для URI: {} с {} по {}", uris, startTime, endTime);
+        List<ViewStatsDto> stats = statsClient.getStatistics(
+                startTime,
+                endTime,
+                uris,
+                true
+        );
+        log.debug("Получение статистики");
+        if (stats != null && !stats.isEmpty()) {
+            for (ViewStatsDto stat : stats) {
+                Long eventId = Long.parseLong(stat.getUri().substring("/events/".length()));
+                viewsMap.put(eventId, stat.getHits());
             }
-        } catch (Exception e) {
-            log.error("Не удалось получить статистику");
         }
+
         return viewsMap;
     }
  }

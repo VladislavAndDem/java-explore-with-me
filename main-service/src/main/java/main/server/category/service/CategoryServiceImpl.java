@@ -11,6 +11,8 @@ import main.server.events.model.EventModel;
 import main.server.events.services.PublicService;
 import main.server.exception.ConflictException;
 import main.server.exception.NotFoundException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,10 +61,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDto> getCategories(Integer from, Integer size) {
-        return categoryRepository.findAll().stream()
+        Pageable pageable = PageRequest.of(from / size, size);
+        return categoryRepository.findAll(pageable)
+                .stream()
                 .map(mapper::toCategoryDto)
-                .skip(from)
-                .limit(size)
                 .toList();
     }
 
