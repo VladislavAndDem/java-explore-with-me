@@ -41,7 +41,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentDto> findAllByEvent(Long eventId, Integer from, Integer size) {
         Pageable pageable = PageRequest.of(from > 0 ? from / size : 0, size, Sort.by(Sort.Direction.ASC, "id"));
-        return commentRepository.findAllByEventId(pageable, eventId).stream()
+        return commentRepository.findAllByEventId(eventId, pageable).stream()
                 .map(commentMapper::toCommentDto)
                 .toList();
     }
