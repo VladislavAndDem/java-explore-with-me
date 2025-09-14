@@ -1,3 +1,5 @@
+## Ссылка на pull request: https://github.com/VladislavAndDem/java-explore-with-me/pull/4
+
 ## Feature "Comments"
 - Структура базы данных:  
   В базе данных создана таблица `comment`, содержащая комментарии с привязкой к событиям и пользователям.
