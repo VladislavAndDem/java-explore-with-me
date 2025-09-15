@@ -1,2 +1,29 @@
-# java-explore-with-me
-Template repository for ExploreWithMe project.
+## Ссылка на pull request: https://github.com/VladislavAndDem/java-explore-with-me/pull/4
+
+## Feature "Comments"
+- Структура базы данных:  
+  В базе данных создана таблица `comment`, содержащая комментарии с привязкой к событиям и пользователям.
+  Каждый комментарий связан с событием, к которому он относится, и пользователем, его написавшим.
+
+- Функциональность комментариев доступна через набор эндпоинтов, разделенных на `Private`, `Admin`,
+  что позволяет предоставлять разные права доступа на основе ролей пользователей.
+
+### PRIVATE API
+#### POST /users/{userId}/events/{eventId}/comments
+
+- Нельзя комментировать не опубликованное событие (Ожидается код ошибки 409)
+
+#### PATCH /users/{userId}/events/{eventId}/comments/{commentId}
+
+- Изменить текст комментария может только тот кто оставлял коммент (Ожидается код ошибки 409)
+
+#### DELETE /users/{userId}/events/{eventId}/comments/{commentId}
+- Удалить можно только собственный комментарий (Ожидается код ошибки 409)
+
+### ADMIN API
+#### PATCH /admin/events/{eventId}/comments/{commentId}
+
+#### DELETE /admin/events/{eventId}/comments/{commentId}
+
+#### GET /admin/events/{eventId}/comments
+- В случае, если не найдено ни одного комментария, возвращается пустой список
